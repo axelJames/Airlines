@@ -12,3 +12,8 @@
 /*html {
 	font-size: 18px;
 }*/
+.card-bg{
+	background: url("/images/bg2.jpeg");
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+}

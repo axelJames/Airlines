@@ -1,74 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="wrapper">
-    <div class="overlay"></div>
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-        <ul class="nav sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                   Brand
-                </a>
-            </li>
-            <li>
-                <a href="#">Home</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">Team</a>
-            </li>
-            <!-- <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">Dropdown heading</li>
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li> -->
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-            <li>
-                <a href="https://twitter.com/maridlcrmn">Follow me</a>
-            </li>
-        </ul>
-    </nav>
-    <div id="page-content-wrapper">
-        <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-            <span class="hamb-top"></span>
-            <span class="hamb-middle"></span>
-            <span class="hamb-bottom"></span>
-        </button>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Search Plane</div>
 
-                        <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header"><big><b>Search Planes</b></big></div>
+                <form method="post" action="/procedures" class="form">
+                    {{ csrf_field() }}
+                    <div class="card-body card-bg" >
+                        <div class="row">
+                            
+                                <div class="col-md-4">
+                                    <select id="source" class="form-control form-control-lg">
+                                        @foreach ($airports as $index => $airport)
+                                        <option>{{$airport->name.','.$airport->city.','.$airport->country}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            @endif
-
-
+                                <div class="col-md-4">
+                                    <select id="dest" class="form-control form-control-lg">
+                                        @foreach ($airports as $index => $airport)
+                                        <option>{{$airport->name.','.$airport->city.','.$airport->country}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <input type="date" name="dept_date" class="form-control"  required placeholder="DEPART">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-primary on-white disabled-btn"> Search</button>
+                                </div>
+                            
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
+
+            @if(isset($schedules))
+            <table class="table">
+                <!-- <tr class="table-header">
+                    <th></th>
+                    <th>Name</th>
+                    <th>Patient</th>
+                    <th>Patient ID</th>
+                    <th>Procedure Date</th>
+                    <th></th>
+                </tr> -->
+                @foreach ($schedules as $index => $sch)
+                <tr class="clickable" data-href="/procedures/{{ $procedure->id }}/edit">
+                    <td class="user-name">{{ $sch->id }}</td>
+                    <td class="user-name">{{ $sch->procedure_name }}</td>
+                    <td class="user-name">{{ $sch->patient->patient->name }}</td>
+                    <td class="user-name">{{ $sch->patient_id }}</td>
+<!--                     <td class="user-name">{{ $procedure->procedure_date }}</td>
+                    <td class="user-name">
+                        <a href="/procedures/{{ $procedure->id }}/edit"
+                            class="btn btn-default success">Edit</button>
+                    </td> -->
+                </tr>
+                @endforeach
+            </table>
+            @endif
+
         </div>
     </div>
 </div>
+
 @endsection
