@@ -4,25 +4,24 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header"><big><b>Search Planes</b></big></div>
-                <form method="post" action="/procedures" class="form">
-                    {{ csrf_field() }}
+                <form method="get" action="/scheduled_flights" class="form">
                     <div class="card-body card-bg" >
                         <div class="row">
                             
                                 <div class="col-md-4">
-                                    <select id="source" class="form-control form-control-lg">
+                                    <select name="source" id="source" class="form-control form-control-lg" required>
                                         @foreach ($airports as $index => $airport)
-                                        <option>{{$airport->name.','.$airport->city.','.$airport->country}}</option>
+                                        <option value={{$airport->id}}>{{$airport->name.','.$airport->city.','.$airport->country}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <select id="dest" class="form-control form-control-lg">
+                                    <select name="dest" id="dest" class="form-control form-control-lg" required>
                                         @foreach ($airports as $index => $airport)
-                                        <option>{{$airport->name.','.$airport->city.','.$airport->country}}</option>
+                                        <option value={{$airport->id}}>{{$airport->name.','.$airport->city.','.$airport->country}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -39,6 +38,7 @@
             </div>
 
             @if(isset($schedules))
+            <div class="card">
             <table class="table">
                 <!-- <tr class="table-header">
                     <th></th>
@@ -50,10 +50,9 @@
                 </tr> -->
                 @foreach ($schedules as $index => $sch)
                 <tr class="clickable" data-href="/procedures/{{ $procedure->id }}/edit">
-                    <td class="user-name">{{ $sch->id }}</td>
-                    <td class="user-name">{{ $sch->procedure_name }}</td>
-                    <td class="user-name">{{ $sch->patient->patient->name }}</td>
-                    <td class="user-name">{{ $sch->patient_id }}</td>
+                    <td class="user-name"><b>{{ $sch->tod }}</b></td>
+                    <td class="user-name">{{ $sch->toa-$sch->tod }}</td>
+                    <td class="user-name"><b>{{ $sch->toa }}</b></td>
 <!--                     <td class="user-name">{{ $procedure->procedure_date }}</td>
                     <td class="user-name">
                         <a href="/procedures/{{ $procedure->id }}/edit"
@@ -62,6 +61,7 @@
                 </tr>
                 @endforeach
             </table>
+            </div>
             @endif
 
         </div>

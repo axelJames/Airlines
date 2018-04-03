@@ -86,16 +86,16 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">Home</a>
+                            <a href="/home">Home</a>
                         </li>
                         <li>
-                            <a href="#">About</a>
+                            <a href="#">My Profile</a>
                         </li>
                         <li>
-                            <a href="#">Events</a>
+                            <a href="#">My Tickets</a>
                         </li>
                         <li>
-                            <a href="#">Team</a>
+                            <a href="#">My Loyalty</a>
                         </li>
                         <!-- <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
@@ -104,15 +104,6 @@
                             <li><a href="#">Action</a></li>
                           </ul>
                         </li> -->
-                        <li>
-                            <a href="#">Services</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact</a>
-                        </li>
-                        <li>
-                            <a href="#">Follow me</a>
-                        </li>
                     </ul>
                 </nav>
                 <div id="page-content-wrapper">
