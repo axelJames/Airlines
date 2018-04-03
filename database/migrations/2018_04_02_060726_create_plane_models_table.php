@@ -15,6 +15,12 @@ class CreatePlaneModelsTable extends Migration
     {
         Schema::create('plane_models', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name',30);
+            $table->unsignedInteger('economy');
+            $table->unsignedInteger('business');
+            $table->unsignedInteger('firstclass');
+            $table->unsignedDecimal('cargo_limit',3,3);
+            $table->string('manufacturer',30);
             $table->timestamps();
         });
     }

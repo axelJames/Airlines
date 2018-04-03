@@ -15,6 +15,11 @@ class CreateSeatsTable extends Migration
     {
         Schema::create('seats', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('class',['Business','Economy','FirstClass']);
+            $table->string('seat_no',30);
+            $table->unsignedInteger('plane_id');
+            $table->foreign('plane_id')->references('id')
+                    ->on('planes');
             $table->timestamps();
         });
     }

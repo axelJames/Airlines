@@ -15,6 +15,9 @@ class CreatePilotsTable extends Migration
     {
         Schema::create('pilots', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('years_of_experience');
+            $table->foreign('id')->references('id')
+                    ->on('employees');
             $table->timestamps();
         });
     }

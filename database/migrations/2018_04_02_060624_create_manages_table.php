@@ -14,7 +14,12 @@ class CreateManagesTable extends Migration
     public function up()
     {
         Schema::create('manages', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('manager');
+            $table->unsignedInteger('manages');
+            $table->foreign('manager')->references('id')
+                    ->on('employees');
+            $table->foreign('manages')->references('id')
+                    ->on('employees');
             $table->timestamps();
         });
     }

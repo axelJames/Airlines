@@ -15,6 +15,13 @@ class CreateInspectionsTable extends Migration
     {
         Schema::create('inspections', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('technician');
+            $table->unsignedInteger('plane_id');
+            $table->foreign('technician')->references('id')
+                    ->on('employees');
+            $table->foreign('plane_id')->references('id')
+                    ->on('planes');
+            $table->date('date');
             $table->timestamps();
         });
     }

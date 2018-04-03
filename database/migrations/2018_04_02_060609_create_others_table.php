@@ -15,6 +15,9 @@ class CreateOthersTable extends Migration
     {
         Schema::create('others', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('type',['Hostess', 'HR', 'Accounting', 'Administration']);
+            $table->foreign('id')->references('id')
+                    ->on('employees');
             $table->timestamps();
         });
     }

@@ -15,6 +15,11 @@ class CreateAirportsTable extends Migration
     {
         Schema::create('airports', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedDecimal('latitude',3,3)->default(0.0);
+            $table->unsignedDecimal('longitude',3,3)->default(0.0);
+            $table->string('name',50);
+            $table->string('city',30);
+            $table->string('country',30);
             $table->timestamps();
         });
     }

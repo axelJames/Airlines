@@ -15,6 +15,9 @@ class CreateTechniciansTable extends Migration
     {
         Schema::create('technicians', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('area_of_exp',30);
+            $table->foreign('id')->references('id')
+                    ->on('employees');
             $table->timestamps();
         });
     }
