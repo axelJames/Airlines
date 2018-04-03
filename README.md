@@ -5,7 +5,6 @@ Make migration and seed database
 `composer require silber/bouncer v1.0.0-rc.1`  
 In user model  
 `use Silber\Bouncer\Database\HasRolesAndAbilities;
-
 class User extends Model
 {
     use HasRolesAndAbilities;
