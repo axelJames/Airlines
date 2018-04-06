@@ -21,5 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('scheduled_flights', 'ScheduledFlightController')->middleware('can:view,App\Airport');
 Route::resource('tickets', 'TicketController');
+
 Route::resource('bookings', 'BookingController');
 Route::resource('payments', 'PaymentController');
+
+Route::resource('loyalty_types', 'LoyaltyTypeController');
+Route::get('loyalty_profiles/get_my_profile', 'LoyaltyProfileController@get_my_profile');
+Route::resource('loyalty_profiles', 'LoyaltyProfileController');

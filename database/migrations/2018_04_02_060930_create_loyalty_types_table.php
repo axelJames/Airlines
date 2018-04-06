@@ -18,7 +18,7 @@ class CreateLoyaltyTypesTable extends Migration
             $table->unsignedInteger('minimum_miles')->default(0);
             $table->unsignedInteger('free_miles')->default(0);
             $table->unsignedInteger('food_discount')->default(0);
-            $table->enum('status', ['active','passive']);
+            $table->enum('status', ['active','inactive']);
             $table->primary('program');
             $table->timestamps();
         });

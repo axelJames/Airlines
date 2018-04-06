@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\LoyaltyProfile;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoyaltyProfileController extends Controller
 {
@@ -25,6 +26,9 @@ class LoyaltyProfileController extends Controller
     public function create()
     {
         //
+
+        $loyalty_profiles = LoyaltyProfile::all();
+        return view("loyalty_profiles.create", compact("loyalty_profiles"));
     }
 
     /**
@@ -46,7 +50,7 @@ class LoyaltyProfileController extends Controller
      */
     public function show(LoyaltyProfile $loyaltyProfile)
     {
-        //
+        // 
     }
 
     /**
@@ -82,4 +86,14 @@ class LoyaltyProfileController extends Controller
     {
         //
     }
+
+    public function get_my_profile()
+    {
+        //
+        // $id = Auth::id();
+        $id = 1;
+        $profile = LoyaltyProfile::where('customer_id',$id)->get();//dd($profile);
+        return view("loyalty_profiles.home", compact('profile'));
+    }
+
 }
