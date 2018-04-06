@@ -18,3 +18,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('scheduled_flights', 'ScheduledFlightController')->middleware('can:view,App\Airport');

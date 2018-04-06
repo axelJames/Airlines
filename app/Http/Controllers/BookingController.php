@@ -24,7 +24,17 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        DB::transaction(function()
+        {
+            $newAcct = Account::create([
+                'accountname' => Input::get('accountname')
+            ]);
+
+            $newUser = User::create([
+                'username' => Input::get('username'),
+                'account_id' => $newAcct->id,
+            ]);
+        });
     }
 
     /**
