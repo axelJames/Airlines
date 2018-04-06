@@ -22,7 +22,8 @@ class ScheduledFlightController extends Controller
         $dest = Input::get('dest');
         $dept_date = Input::get('dept_date');
         // dd($source);
-        $schedules = ScheduledFlight::where([['source',$source],['dest',$dest],['dod',$dept_date],['status','<>','CANCELLED']]);
+        $schedules = ScheduledFlight::where([['start',$source],['dest',$dest],['dod',$dept_date],['status','<>','CANCELLED']])->get();
+        // dd($schedules);
         return view('home',compact('airports','schedules'));
     }
 

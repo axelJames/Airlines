@@ -49,7 +49,7 @@
                     <th></th>
                 </tr> -->
                 @foreach ($schedules as $index => $sch)
-                <tr class="clickable" data-href="/procedures/{{ $procedure->id }}/edit">
+                <tr class="clickable" data-href="">
                     <td class="user-name"><b>{{ $sch->tod }}</b></td>
                     <td class="user-name">{{ $sch->toa-$sch->tod }}</td>
                     <td class="user-name"><b>{{ $sch->toa }}</b></td>
