@@ -25,14 +25,14 @@ class TicketController extends Controller
             $status = Input::get('type');
             // dd($status);
             if($status=='active'){
-                $tickets =  Airport::all();
+                $tickets =  Ticket::where('customer_id',$id);
                 return view('ticket.index',compact('tickets'));
             }
-            $tickets =  Airport::all();
+            $tickets =  Ticket::where('customer_id',$id);
             return view('ticket.complete',compact('tickets'));
         }
         // dd($status);
-        $tickets =  Airport::all();
+        $tickets =  Ticket::where('customer_id',$id);
         return view('ticket.index',compact('tickets'));
     }
 

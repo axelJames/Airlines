@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Payment;
+use App\Booking;
+use App\Ticket;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -35,7 +37,58 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
+        $id = Auth::id();
+        $flight = json_decode($request->flight);
+        $business =(int)$request->business;
+        $ecomony = (int)$request->ecomony;
+        $firstclass = (int)$request->firstclass;
+
+        DB::transaction(function()
+        {
+            $newPay = Payment::create([
+                'cash' => $request->cash,
+                'amount' => (float)$request->total,
+                'bank' => $request->bank,
+                'description'=> 'Ticket Booking',
+            ]);
+
+            $newBooking = Booking::create([
+                'payment_id' => $newPay->id,
+                'customer_id' => $id,
+            ]);
+            DB::select('exec Get_seat_list(?)',array($flight->id));
+            $businessSeat = DB::table('Business_Seat')->take($business)->get();
+            $ecomonySeat = DB::table('Economy_Seat')->take($ecomony)->get();
+            $firstclassSeat = DB::table('Firstclass_Seat')->take($firstclass)->get();
+            foreach ($businessSeat as $key => $value) {
+                $newTicket = Ticket::create([
+                    'booking_id' => $newBooking->id,
+                    'customer_id' => $id,
+                    'flight_id' => $flight->id,
+                    'seat_id'=>$value->ID,
+                ]);
+            }
+            foreach ($ecomonySeat as $key => $value) {
+                $newTicket = Ticket::create([
+                    'booking_id' => $newBooking->id,
+                    'customer_id' => $id,
+                    'flight_id' => $flight->id,
+                    'seat_id'=>$value->ID,
+                ]);
+            }
+            foreach ($firstclassSeat as $key => $value) {
+                $newTicket = Ticket::create([
+                    'booking_id' => $newBooking->id,
+                    'customer_id' => $id,
+                    'flight_id' => $flight->id,
+                    'seat_id'=>$value->ID,
+                ]);
+            }
+        });
+
+        $tickets =  Ticket::where('customer_id',$id);
+        return view('ticket.index',compact('tickets'));
     }
 
     /**

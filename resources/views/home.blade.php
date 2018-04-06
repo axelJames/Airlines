@@ -49,15 +49,13 @@
                     <th></th>
                 </tr> -->
                 @foreach ($schedules as $index => $sch)
-                <tr class="clickable" data-href="">
+                <tr class="clickable" data-href="/scheduled_flights/ {{$sch->id }}/">
                     <td class="user-name"><b>{{ $sch->tod }}</b></td>
-                    <td class="user-name">{{ $sch->toa-$sch->tod }}</td>
+                    <td class="user-name">{{ strtotime($sch->toa)-strtotime($sch->tod) }}</td>
                     <td class="user-name"><b>{{ $sch->toa }}</b></td>
-<!--                     <td class="user-name">{{ $procedure->procedure_date }}</td>
-                    <td class="user-name">
-                        <a href="/procedures/{{ $procedure->id }}/edit"
+                    <!-- <td class="user-name"><a href="/procedures/ $procedure->id }}/edit"
                             class="btn btn-default success">Edit</button>
-                    </td> -->
+                    </td> --> 
                 </tr>
                 @endforeach
             </table>
@@ -67,5 +65,11 @@
         </div>
     </div>
 </div>
-
+<script>
+$(document).ready(function($) {
+    $(".clickable").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
 @endsection

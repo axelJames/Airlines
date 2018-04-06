@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\ScheduledFlight;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -24,17 +25,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        DB::transaction(function()
-        {
-            $newAcct = Account::create([
-                'accountname' => Input::get('accountname')
-            ]);
-
-            $newUser = User::create([
-                'username' => Input::get('username'),
-                'account_id' => $newAcct->id,
-            ]);
-        });
+        
     }
 
     /**
@@ -45,7 +36,28 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $scheduledFlight =json_decode($request->flight[0]);
+        // dd($scheduledFlight);
+        $economy = (int)$request->economy;
+        $firstclass = (int)$request->firstclass;
+        $business = (int)$request->business;
+        $price = (ScheduledFlight::where('id',$scheduledFlight->id)->first())->price;
+        $total = $economy * $price + $firstclass * ($price +200) +$business *($price + 500);
+        // dd($total);
+        return view('booking.pay',compact('scheduledFlight','business','economy','firstclass','total'));
+
+        // dd($flight->plane_id);
+        // DB::transaction(function()
+        // {
+        //     $newAcct = Account::create([
+        //         'accountname' => Input::get('accountname')
+        //     ]);
+
+        //     $newUser = User::create([
+        //         'username' => Input::get('username'),
+        //         'account_id' => $newAcct->id,
+        //     ]);
+        // });
     }
 
     /**

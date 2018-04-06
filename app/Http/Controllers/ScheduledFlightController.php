@@ -56,7 +56,14 @@ class ScheduledFlightController extends Controller
      */
     public function show(ScheduledFlight $scheduledFlight)
     {
-        return view('booking.book',compact('scheduledFlight'));
+        // DB::select('exec Get_seat_list(?)',array($scheduledFlight->id));
+        // $business = DB::table('Business_Seat')->count();
+        // $ecomony = DB::table('Economy_Seat')->count();
+        // $firstclass = DB::table('Firstclass_Seat')->count();
+        $business=1;
+        $economy = 2;
+        $firstclass =1;
+        return view('booking.book',compact('scheduledFlight','business','economy','firstclass'));
     }
 
     /**

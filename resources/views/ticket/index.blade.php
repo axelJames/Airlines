@@ -20,23 +20,21 @@
             <!-- <div class="card"> -->
             <table class="table">
                 <tr class="table-header">
-                    <th></th>
-                    <th>Name</th>
-                    <th>Patient</th>
-                    <th>Patient ID</th>
-                    <th>Procedure Date</th>
-                    <th></th>
+                    <th>Flight ID</th>
+                    <th>Seat No</th>
+                    <th>Date of Departure</th>
+                    <th>Time of Departure</th>
+                    <th>Date of Arrival</th>
+                    <th>Time of Arrival</th>
                 </tr>
                 @foreach ($tickets as $index => $ticket)
                 <tr class="clickable" data-href="/procedures/ $procedure->id }}/edit">
-                    <td class="user-name"><b>{{ $ticket->latitude }}</b></td>
-                    <td class="user-name">{{ $ticket->id }}</td>
-                    <td class="user-name"><b>{{ $ticket->longitude }}</b></td>
-<!--                     <td class="user-name"> $procedure->procedure_date }}</td>
-                    <td class="user-name">
-                        <a href="/procedures/ $procedure->id }}/edit"
-                            class="btn btn-default success">Edit</button>
-                    </td> -->
+                    <td class="user-name">{{ $ticket->flight_id }}</td>
+                    <td class="user-name">{{ $ticket->seat->seat_no }}</td>
+                    <td class="user-name">{ $ticket->flight->dod }}</td>
+                    <td class="user-name">{ $ticket->flight->tod }}</td>
+                    <td class="user-name">{ $ticket->flight->doa }}</td>
+                    <td class="user-name">{ $ticket->flight->toa }}</td>
                 </tr>
                 @endforeach
             </table>
