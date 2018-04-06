@@ -23,7 +23,7 @@ class CreateScheduledFlightsTable extends Migration
             $table->time('tod');
             $table->time('toa');
             $table->enum('status', ['CANCELLED', 'ON-TIME', 'DELAYED'])->default('ON-TIME');
-            $table->unsignedDecimal('price', 7, 2);
+            $table->unsignedDecimal('price', 9, 2);
             $table->foreign('plane_id')->references('id')
                     ->on('planes');
             $table->foreign('start')->references('id')

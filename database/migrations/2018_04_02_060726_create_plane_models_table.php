@@ -19,7 +19,7 @@ class CreatePlaneModelsTable extends Migration
             $table->unsignedInteger('economy');
             $table->unsignedInteger('business');
             $table->unsignedInteger('firstclass');
-            $table->unsignedDecimal('cargo_limit',3,3);
+            $table->unsignedDecimal('cargo_limit',6,3);
             $table->string('manufacturer',30);
             $table->timestamps();
         });

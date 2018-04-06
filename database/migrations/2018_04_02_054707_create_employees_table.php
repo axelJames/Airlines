@@ -22,7 +22,7 @@ class CreateEmployeesTable extends Migration
             $table->string('address',30);
             $table->string('phone_no',15);
             $table->string('bank',30);
-            $table->unsignedDecimal('salary',10,2)->default(0.0);
+            $table->unsignedDecimal('salary',12,2)->default(0.0);
             $table->date('doj');
             $table->foreign('id')->references('id')
                     ->on('users');
