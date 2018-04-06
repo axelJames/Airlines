@@ -15,9 +15,9 @@ class CreateScheduledFlightsTable extends Migration
     {
         Schema::create('scheduled_flights', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('plane_id');
-            $table->integer('start');
-            $table->integer('dest');
+            $table->unsignedInteger('plane_id');
+            $table->unsignedInteger('start');
+            $table->unsignedInteger('dest');
             $table->date('dod');
             $table->date('doa');
             $table->time('tod');

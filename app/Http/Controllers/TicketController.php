@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+
+use App\Airport;
 
 class TicketController extends Controller
 {
@@ -14,7 +18,22 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $id = Auth::id();
+        // $tickets = Ticket::all();\
+        $status ="active";
+        if (Input::has('type')) {
+            $status = Input::get('type');
+            // dd($status);
+            if($status=='active'){
+                $tickets =  Airport::all();
+                return view('ticket.index',compact('tickets'));
+            }
+            $tickets =  Airport::all();
+            return view('ticket.complete',compact('tickets'));
+        }
+        // dd($status);
+        $tickets =  Airport::all();
+        return view('ticket.index',compact('tickets'));
     }
 
     /**

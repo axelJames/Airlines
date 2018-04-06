@@ -15,7 +15,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id')->unique();
             $table->string('name',30);
             $table->date('dob');
             $table->enum('gender',['M','F','Other']);
@@ -24,6 +24,8 @@ class CreateEmployeesTable extends Migration
             $table->string('bank',30);
             $table->unsignedDecimal('salary',10,2)->default(0.0);
             $table->date('doj');
+            $table->foreign('id')->references('id')
+                    ->on('users');
             $table->timestamps();
         });
     }

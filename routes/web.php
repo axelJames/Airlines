@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('scheduled_flights', 'ScheduledFlightController')->middleware('can:view,App\Airport');
+Route::resource('tickets', 'TicketController');

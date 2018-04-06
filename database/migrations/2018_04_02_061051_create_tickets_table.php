@@ -21,7 +21,7 @@ class CreateTicketsTable extends Migration
             $table->foreign('booking_id')->references('id')
                     ->on('bookings');
             $table->foreign('flight_id')->references('id')
-                    ->on('flights');
+                    ->on('scheduled_flights');
             $table->foreign('seat_id')->references('id')
                     ->on('seats');
             $table->foreign('customer_id')->references('id')

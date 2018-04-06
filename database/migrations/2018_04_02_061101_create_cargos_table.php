@@ -23,7 +23,7 @@ class CreateCargosTable extends Migration
             $table->foreign('booking_id')->references('id')
                     ->on('bookings');
             $table->foreign('flight_id')->references('id')
-                    ->on('flights');
+                    ->on('scheduled_flights');
             $table->foreign('owner_id')->references('id')
                     ->on('customer_profiles');
             $table->timestamps();

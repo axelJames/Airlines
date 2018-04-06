@@ -92,7 +92,7 @@
                             <a href="#">My Profile</a>
                         </li>
                         <li>
-                            <a href="#">My Tickets</a>
+                            <a href="/tickets">My Tickets</a>
                         </li>
                         <li>
                             <a href="#">My Loyalty</a>
