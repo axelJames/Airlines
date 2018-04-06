@@ -15,6 +15,17 @@ class CreateCargosTable extends Migration
     {
         Schema::create('cargos', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('flight_id');
+            $table->unsignedInteger('owner_id');
+            $table->unsignedInteger('weight')->default(0);
+            $table->enum('type', ['Animal', 'Mail', 'Luggage']);
+            $table->unsignedInteger('booking_id');
+            $table->foreign('booking_id')->references('id')
+                    ->on('bookings');
+            $table->foreign('flight_id')->references('id')
+                    ->on('flights');
+            $table->foreign('owner_id')->references('id')
+                    ->on('customer_profiles');
             $table->timestamps();
         });
     }

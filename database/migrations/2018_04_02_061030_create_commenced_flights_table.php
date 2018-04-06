@@ -14,7 +14,14 @@ class CreateCommencedFlightsTable extends Migration
     public function up()
     {
         Schema::create('commenced_flights', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id');
+            $table->date('dod');
+            $table->date('doa');
+            $table->time('tod');
+            $table->time('toa');
+            $table->enum('status', ['ON-TIME', 'DELAYED'])->default('ON-TIME');
+            $table->foreign('id')->references('id')
+                    ->on('scheduled_flights');
             $table->timestamps();
         });
     }

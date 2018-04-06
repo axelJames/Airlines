@@ -14,7 +14,12 @@ class CreateSalaryPaidsTable extends Migration
     public function up()
     {
         Schema::create('salary_paids', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedIntegers('employee_id');
+            $table->unsignedIntegers('payment_id');
+            $table->foreign('payment_id')->references('id')
+                    ->on('payments');
+            $table->foreign('employee_id')->references('id')
+                    ->on('employees');
             $table->timestamps();
         });
     }

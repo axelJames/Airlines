@@ -15,6 +15,11 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
+            $table->float('amount')->default(0.0);
+            $table->enum('cash', ['Y','N'])->default('N');
+            $table->string('bank', 30);
+            $table->integer('transaction_id');
+            $table->enum('description', ['Plane Purchase','Ticket Booking','Cargo Booking','Fuel Purchase','Salary','Insurance','Other']);
             $table->timestamps();
         });
     }

@@ -14,7 +14,12 @@ class CreateCrewsTable extends Migration
     public function up()
     {
         Schema::create('crews', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('flight_id');
+            $table->foreign('flight_id')->references('id')
+                    ->on('flights');
+            $table->foreign('employee_id')->references('id')
+                    ->on('employees');
             $table->timestamps();
         });
     }

@@ -15,6 +15,21 @@ class CreateScheduledFlightsTable extends Migration
     {
         Schema::create('scheduled_flights', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('plane_id');
+            $table->integer('start');
+            $table->integer('dest');
+            $table->date('dod');
+            $table->date('doa');
+            $table->time('tod');
+            $table->time('toa');
+            $table->enum('status', ['CANCELLED', 'ON-TIME', 'DELAYED'])->default('ON-TIME');
+            $table->unsignedDecimal('price', 7, 2);
+            $table->foreign('plane_id')->references('id')
+                    ->on('planes');
+            $table->foreign('start')->references('id')
+                    ->on('airports');
+            $table->foreign('dest')->references('id')
+                    ->on('airports');
             $table->timestamps();
         });
     }

@@ -14,7 +14,13 @@ class CreateLoyaltyProfilesTable extends Migration
     public function up()
     {
         Schema::create('loyalty_profiles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('customer_id');
+            $table->string('program', 30);
+            $table->unsignedInteger('free_miles')->default(0);
+            $table->foreign('customer_id')->references('id')
+                    ->on('customer_profiles');
+            $table->foreign('program')->references('program')
+                    ->on('loyalty_types');
             $table->timestamps();
         });
     }
