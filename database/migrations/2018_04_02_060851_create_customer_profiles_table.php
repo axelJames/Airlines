@@ -14,7 +14,7 @@ class CreateCustomerProfilesTable extends Migration
     public function up()
     {
         Schema::create('customer_profiles', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('id');
             $table->string('name',30);
             $table->enum('gender',['M', 'F', 'Other']);
             $table->date('dob');
@@ -24,6 +24,7 @@ class CreateCustomerProfilesTable extends Migration
             $table->string('bank',30);
             $table->integer('miles_travelled');
             $table->timestamps();
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

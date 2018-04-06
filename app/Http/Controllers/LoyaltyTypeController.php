@@ -15,6 +15,8 @@ class LoyaltyTypeController extends Controller
     public function index()
     {
         //
+        $loyalties = LoyaltyType::where("status",'active')->get();
+        return view("loyaltyt.index", compact("loyalties"));
     }
 
     /**
